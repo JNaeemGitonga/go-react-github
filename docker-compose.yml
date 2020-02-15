@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  client:
+    build: ./client
+    container_name: client
+    image: client
+    ports:
+      - '9900:3000'
+    volumes:
+      - ./client:/app/
+  server:
+    build: ./server
+    container_name: server
+    image: server
+    ports:
+      - '9901:9901'
+    volumes:
+      - ./server:/app
