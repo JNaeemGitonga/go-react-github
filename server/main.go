@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -37,7 +39,20 @@ func favoritesByUserID(w http.ResponseWriter, r *http.Request) {
 }
 
 func reposByUserID(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "trynna get repos by userid")
+	resp, err := http.Get("https://api.github.com/users/JNaeemGitonga")
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	fmt.Fprintf(w, string(body))
 }
 
 func repos(w http.ResponseWriter, r *http.Request) {
