@@ -14,4 +14,4 @@ To start this app:
 
 3. In your terminal run the following command: `$ docker-compose build && docker-compose run --rm` 
 
-4. In your favorite browser visit: `$ http://localhost:9901`
+4. In your favorite browser visit: `$ http://localhost:9900`

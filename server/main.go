@@ -14,7 +14,7 @@ func main() {
 
 	r.HandleFunc("/login", login).Methods("POST")
 
-	r.HandleFunc("/favorites/{userId}", favorites).Methods("GET")
+	r.HandleFunc("/favorites/{userId}", favoritesByUserID).Methods("GET")
 
 	r.HandleFunc("/repos?q={term}", repos).Methods("GET")
 
@@ -32,14 +32,14 @@ func login(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "you trynna login")
 }
 
-func favorites(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "we'll find you someting")
+func favoritesByUserID(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "trynna get favorites")
 }
 
 func reposByUserID(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "we'll find you something")
+	fmt.Fprintf(w, "trynna get repos by userid")
 }
 
 func repos(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "we'll find you something")
+	fmt.Fprintf(w, "trynna get all repos")
 }
