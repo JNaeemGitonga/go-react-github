@@ -38,5 +38,6 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "eslint-loader": "^3.0.3"
-  }
+  },
+  "proxy": "http://localhost:9901"
 }

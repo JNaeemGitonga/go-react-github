@@ -14,13 +14,13 @@ func main() {
 
 	r.HandleFunc("/", baseRoute).Methods("GET")
 
-	r.HandleFunc("/login", login).Methods("POST")
+	r.HandleFunc("/api/login", login).Methods("POST")
 
-	r.HandleFunc("/favorites/{userId}", favoritesByUserID).Methods("GET")
+	r.HandleFunc("/api/favorites/{userId}", favoritesByUserID).Methods("GET")
 
-	r.HandleFunc("/repos?q={term}", repos).Methods("GET")
+	r.HandleFunc("/api/repos?q={term}", repos).Methods("GET")
 
-	r.HandleFunc("/repos/{userId}", reposByUserID).Methods("GET")
+	r.HandleFunc("/api/repos/{userId}", reposByUserID).Methods("GET")
 
 	fmt.Println("Server listening!")
 	http.ListenAndServe(":9901", r)
@@ -52,7 +52,7 @@ func favoritesByUserID(w http.ResponseWriter, r *http.Request) {
 }
 
 func reposByUserID(w http.ResponseWriter, r *http.Request) {
-	resp, err := http.Get("https://api.github.com/users/JNaeemGitonga")
+	resp, err := http.Get("https://api.github.com/users/JNaeemGitonga/repos")
 	if err != nil {
 		log.Fatalln(err)
 	}

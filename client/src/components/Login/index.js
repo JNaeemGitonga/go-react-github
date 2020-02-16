@@ -25,12 +25,25 @@ export default class Login extends Component {
                         e.preventDefault();
                         if (this.state.showSignup) this.signup();
                         else this.login();
-                    } }id={ styles['login-signup-form'] } aria-label='login form'>
+                      } }
+                      id={ styles['login-signup-form'] }
+                      aria-label='login form'>
 
-                    <input required onChange={ e => this.setState({ username: e.target.value }) } type='name' placeholder='username' aria-label='username input' />
-                    <input required onChange={ e => this.setState({ password: e.target.value }) } type='password' placeholder='password' aria-label='password input' />
+                    <input required
+                           onChange={ e => this.setState({ username: e.target.value }) }
+                           type='name'
+                           placeholder='username'
+                           aria-label='username input' />
+                    <input required
+                           onChange={ e => this.setState({ password: e.target.value }) }
+                           type='password'
+                           placeholder='password'
+                           aria-label='password input' />
                     { this.state.showSignup && (
-                        <input required onChange={ e => this.setState({ confirmPassword: e.target.value }) } required type='password' placeholder='confirm password' aria-label='confirm password' />
+                        <input onChange={ e => this.setState({ confirmPassword: e.target.value }) }
+                               required type='password'
+                               placeholder='confirm password'
+                               aria-label='confirm password' />
                     ) }
                     
                     <input type='submit' value='Submit' aria-label='submit button' />

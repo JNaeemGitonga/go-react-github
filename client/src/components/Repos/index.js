@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
+import request from 'superagent';
 
-const Repos = props => (
-    <div id='repos'>
-        You see me!
-    </div>
-);
+export default class Repos extends Component {
+    componentDidMount() {
+        this.getRepos('JNaeemGitonga')
+    }
 
-export default Repos;
+    getRepos = async username => {
+        let repos;
+        try {
+            repos = await request.get(`/api/repos/${username}`)
+            console.log(repos)
+            
+        } catch (err) {
+            console.log('fail', err)
+        }
+    }
+    render() {
+        return (
+            <div id='repos'>
+                You see me!
+            </div>
+        );
+    }
+} 

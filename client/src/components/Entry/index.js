@@ -7,7 +7,7 @@ import Favorites from '../Favorites';
 
 export default class Entry extends Component {
     state = {
-        loggedIn: false,
+        loggedIn: true,
         repos: false,
         favorites: false,
     }
