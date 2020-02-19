@@ -27,7 +27,7 @@ func main() {
 }
 
 func baseRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "damn it boy")
+	fmt.Fprintf(w, "damnit boy")
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
