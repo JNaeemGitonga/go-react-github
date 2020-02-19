@@ -4,7 +4,7 @@ module.exports = function(app) {
     app.use(
         '/api',
         proxy({
-            target: 'http://localhost:9901/',
+            target: `http://${process.env.HOST}:9901`,
             toProxy: true,
             changeOrigin: true,
         })
