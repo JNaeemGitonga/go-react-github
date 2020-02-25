@@ -1,24 +1,24 @@
 package main
 
 import (
+	"./internal/routehandlers" //!this is wrong figuere out how to structure this. the project is broke
 	"fmt"
 	"github.com/gorilla/mux"
-	"github.com/routehandlers/routehandlerscd" //!this is wrong figuere out how to structure this. the project is broke
-	// u "net/url"
+	"net/http"
 )
 
 func main() {
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", routehandlers.baseRoute).Methods("GET")
+	r.HandleFunc("/", routehandlers.Base).Methods("GET")
 
-	r.HandleFunc("/api/login", routehandlers.login).Methods("POST")
+	r.HandleFunc("/api/login", routehandlers.Login).Methods("POST")
 
-	r.HandleFunc("/api/favorites/{userId}", rouotehandlers.favoritesByUserID).Methods("GET")
+	r.HandleFunc("/api/favorites/{userId}", routehandlers.FavoritesByUserID).Methods("GET")
 
-	r.HandleFunc("/api/repos?q={term}", routehandlers.repos).Methods("GET")
+	r.HandleFunc("/api/repos?q={term}", routehandlers.Repos).Methods("GET")
 
-	r.HandleFunc("/api/repos/{userId}", rooutehandlers.reposByUserName).Methods("GET")
+	r.HandleFunc("/api/repos/{userId}", routehandlers.ReposByUserName).Methods("GET")
 
 	fmt.Println("Server listening!")
 	http.ListenAndServe(":9901", r)

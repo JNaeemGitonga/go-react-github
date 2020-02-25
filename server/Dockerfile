@@ -1,7 +1,6 @@
 FROM golang:latest 
 RUN mkdir /app 
 COPY . /app
-COPY ./lib/routeshandlers ../go/src/github.com/routeshandlers
 WORKDIR /app 
 RUN go get github.com/gorilla/mux
 RUN go get github.com/githubnemo/CompileDaemon
