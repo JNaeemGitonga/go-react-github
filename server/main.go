@@ -18,7 +18,7 @@ func main() {
 
 	r.HandleFunc("/api/repos?q={term}", routehandlers.Repos).Methods("GET")
 
-	r.HandleFunc("/api/repos/{userId}", routehandlers.ReposByUserName).Methods("GET")
+	r.HandleFunc("/api/repos/{userId}", routehandlers.ReposByUsername).Methods("GET")
 
 	fmt.Println("Server listening!")
 	http.ListenAndServe(":9901", r)

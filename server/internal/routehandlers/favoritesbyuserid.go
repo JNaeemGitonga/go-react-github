@@ -7,6 +7,9 @@ import (
 	"net/http"
 )
 
+// FavoritesByUserID ...
+//* this will give you your favorite user repos base on you
+//* userID (will probably be changed to name since github uses usernames...)
 func FavoritesByUserID(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(*r.URL)
 	// u.parse(*r.URL) // I left off here trying too get the value from the above pointer

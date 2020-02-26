@@ -25,4 +25,4 @@ To start this app:
 
 3. If you are coding in Go while using VS Code if you happen to notice your imports disappearing you may want to take a look [here](https://github.com/Microsoft/vscode-go/issues/1266). This github thread will tell you how to change the editor's format tool to `"go.formatTool":"gofmt"`. That solved the problem for me.
 
-4. The case of pointers (`*`) in Go. I thought that it was a lot of trouble to get the valuue from this pointer but turns out it was like accessing a an objects properrty in JS.
+4. Internal modules... First I needed break out the logic from my `main.go` file. You want to keep that as lean as possible.
