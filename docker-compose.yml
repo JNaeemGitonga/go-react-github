@@ -16,3 +16,9 @@ services:
       - '9901:9901'
     volumes:
       - ./server:/app
+  database:
+    build: ./db
+    container_name: database
+    image: mongo
+    ports: 
+      - 9902:27017
