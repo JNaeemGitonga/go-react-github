@@ -1,8 +1,7 @@
 FROM golang:latest 
 RUN mkdir /app 
 COPY . /app
-WORKDIR /app 
-RUN go get github.com/gorilla/mux
+WORKDIR /app
 RUN go get github.com/githubnemo/CompileDaemon
 RUN go build -o main . 
 CMD ['/app/main']
