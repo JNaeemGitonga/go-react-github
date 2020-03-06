@@ -7,5 +7,5 @@ import "strings"
 //* param of the url
 func GetParam(path string) string {
 	slice := strings.Split(path, "/")
-	return slice[3]
+	return slice[2]
 }
