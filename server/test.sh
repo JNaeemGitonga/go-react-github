@@ -1,0 +1,3 @@
+location=$(pwd)
+
+go test $location/internal/...
