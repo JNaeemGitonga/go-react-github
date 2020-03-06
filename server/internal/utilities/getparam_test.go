@@ -6,7 +6,15 @@ import (
 
 func TestGetParam(t *testing.T) {
 	expected := "me"
-	if got := GetParam("/api/repos/me"); got != expected {
+	got, err := GetParam("/api/repos/me")
+	if err != nil {
+		t.Errorf("There was an error: %v", err)
+	}
+
+	expected = "test"
+	secondTestResult, _ := GetParam("/api/repos/test")
+	if secondTestResult != expected {
 		t.Errorf("Expected %v. Got %v", expected, got)
 	}
+
 }
