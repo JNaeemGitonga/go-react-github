@@ -1,8 +1,8 @@
 package routehandlers
 
 import (
-	util "../utilities"
 	"fmt"
+	util "githubapp.tld/server/internal/utilities"
 	"io/ioutil"
 	"log"
 	"net/http"

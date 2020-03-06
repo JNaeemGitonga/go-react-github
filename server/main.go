@@ -1,8 +1,8 @@
 package main
 
 import (
-	"./internal/routehandlers" //!this is wrong figuere out how to structure this. the project is broke
 	"fmt"
+	"githubapp.tld/server/internal/routehandlers" //!this is wrong figuere out how to structure this. the project is broke
 	"github.com/gorilla/mux"
 	"net/http"
 )
