@@ -5,16 +5,18 @@ import (
 )
 
 func TestGetParam(t *testing.T) {
-	expected := "me"
-	got, err := GetParam("/api/repos/me")
-	if err != nil {
-		t.Errorf("There was an error: %v", err)
+	//* Table-driven tests using a slice of test cases
+	testCases := []struct {
+		param    string
+		expected string
+	}{
+		{"/api/repos/me", "me"},
+		{"api/repos//me", ""},
 	}
 
-	expected = "test"
-	secondTestResult, _ := GetParam("/api/repos/test")
-	if secondTestResult != expected {
-		t.Errorf("Expected %v. Got %v", expected, got)
+	for _, tc := range testCases {
+		if got, err := GetParam(tc.param); got == tc.expected && err != nil {
+			t.Errorf("Expected %v. Got %v", tc.expected, got)
+		}
 	}
-
 }
