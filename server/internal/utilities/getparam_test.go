@@ -10,7 +10,7 @@ func TestGetParam(t *testing.T) {
 		param    string
 		expected string
 	}{
-		{"/api/repos/me", "me"},
+		{"/api/repos/jaha", "jaha"},
 		{"api/repos//me", ""},
 	}
 

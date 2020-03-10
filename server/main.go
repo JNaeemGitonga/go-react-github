@@ -2,24 +2,32 @@ package main
 
 import (
 	"fmt"
-	"githubapp.tld/server/internal/routehandlers" //!this is wrong figuere out how to structure this. the project is broke
 	"github.com/gorilla/mux"
+	"githubapp.tld/server/internal/routehandlers" //!this is wrong figuere out how to structure this. the project is broke
 	"net/http"
+)
+
+const (
+	port     = ":9901"
+	baseURL  = "/"
+	loginURL = "/api/login"
+	favURL   = "/api/favorites"
+	reposURL = "/api/repos"
 )
 
 func main() {
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", routehandlers.Base).Methods("GET")
+	r.HandleFunc(baseURL, routehandlers.Base).Methods("GET")
 
-	r.HandleFunc("/api/login", routehandlers.Login).Methods("POST")
+	r.HandleFunc(loginURL, routehandlers.Login).Methods("POST")
 
-	r.HandleFunc("/api/favorites/{userId}", routehandlers.FavoritesByUserID).Methods("GET")
+	r.HandleFunc(favURL+"/{userId}", routehandlers.FavoritesByUserID).Methods("GET")
 
-	r.HandleFunc("/api/repos?q={term}", routehandlers.Repos).Methods("GET")
+	r.HandleFunc(reposURL+"?q={term}", routehandlers.Repos).Methods("GET")
 
-	r.HandleFunc("/api/repos/{username}", routehandlers.ReposByUsername).Methods("GET")
+	r.HandleFunc(reposURL+"/{username}", routehandlers.ReposByUsername).Methods("GET")
 
 	fmt.Println("Server listening!")
-	http.ListenAndServe(":9901", r)
+	http.ListenAndServe(port, r)
 }
