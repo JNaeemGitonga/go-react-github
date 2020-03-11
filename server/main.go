@@ -44,7 +44,7 @@ func main() {
 	r.HandleFunc(reposURL+"?q={term}", routehandlers.Repos).Methods("GET")
 
 	r.HandleFunc(reposURL+"/{username}", func(w http.ResponseWriter, r *http.Request) {
-		routehandlers.ReposByUsername(w, r, &client, githubcalls.GetUsersReposByUsername)
+		routehandlers.ReposByUsername(ctx, w, r, &client, githubcalls.GetUsersReposByUsername)
 	}).Methods("GET")
 
 	fmt.Println("Server listening!")
