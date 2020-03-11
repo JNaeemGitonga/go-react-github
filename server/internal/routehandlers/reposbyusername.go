@@ -20,6 +20,7 @@ func ReposByUsername(w http.ResponseWriter, r *http.Request, fn apiCall) {
 	}
 
 	resp, err := fn(param)
+	fmt.Println(resp)
 	if err != nil {
 		log.Fatalln(err)
 	}
