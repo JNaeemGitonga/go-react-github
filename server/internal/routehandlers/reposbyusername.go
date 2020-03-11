@@ -8,16 +8,18 @@ import (
 	"net/http"
 )
 
+type apiCall func(string) (*http.Response, error)
+
 // ReposByUsername ...
 //* here we'll return the users repos by using the user's
 //* username
-func ReposByUsername(w http.ResponseWriter, r *http.Request) {
+func ReposByUsername(w http.ResponseWriter, r *http.Request, fn apiCall) {
 	param, err := util.GetParam(r.URL.Path)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	resp, err := http.Get(fmt.Sprintf("https://api.github.com/users/%s/repos", param)) //! The zero value for a slice is nil so here we need to use the 3rd index of this slice
+	resp, err := fn(param)
 	if err != nil {
 		log.Fatalln(err)
 	}

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gorilla/mux"
+	"githubapp.tld/server/internal/githubcalls"
 	"githubapp.tld/server/internal/routehandlers" //!this is wrong figuere out how to structure this. the project is broke
 	"net/http"
 )
@@ -24,7 +25,7 @@ func main() {
 
 	r.HandleFunc(favURL+"/{userId}", routehandlers.FavoritesByUserID).Methods("GET")
 
-	r.HandleFunc(reposURL+"?q={term}", routehandlers.Repos).Methods("GET")
+	r.HandleFunc(reposURL+"?q={term}", routehandlers.Repos(a, y githubcalls)).Methods("GET")
 
 	r.HandleFunc(reposURL+"/{username}", routehandlers.ReposByUsername).Methods("GET")
 
