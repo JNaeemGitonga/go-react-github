@@ -3,11 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/google/go-github/v29/github"
 	"github.com/gorilla/mux"
+	"githubapp.tld/server/internal/githubcalls"
 	"githubapp.tld/server/internal/routehandlers" //!this is wrong figuere out how to structure this. the project is broke
-	utils "githubapp.tld/server/internal/utilities"
-	"golang.org/x/oauth2"
 	"net/http"
 )
 
@@ -25,13 +23,7 @@ var (
 
 func main() {
 	ctx := context.Background()
-	githubAccessToken = utils.GetEnvVar("GITHUB__ACCESS__TOKEN")
-	ts := oauth2.StaticTokenSource(
-		&oauth2.Token{AccessToken: githubAccessToken},
-	)
-	tc := oauth2.NewClient(ctx, ts)
 
-	client := github.NewClient(tc)
 	r := mux.NewRouter()
 
 	r.HandleFunc(baseURL, routehandlers.Base).Methods("GET")
@@ -43,7 +35,7 @@ func main() {
 	r.HandleFunc(reposURL+"?q={term}", routehandlers.Repos).Methods("GET")
 
 	r.HandleFunc(reposURL+"/{username}", func(w http.ResponseWriter, r *http.Request) {
-		routehandlers.ReposByUsername(ctx, w, r, client)
+		routehandlers.ReposByUsername(ctx, w, r, githubcalls.GetUsersReposByUsername)
 	}).Methods("GET")
 
 	fmt.Println("Server listening!")
