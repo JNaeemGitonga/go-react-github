@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/google/go-github/v29/github"
 	"github.com/gorilla/mux"
-	"githubapp.tld/server/internal/githubcalls"
 	"githubapp.tld/server/internal/routehandlers" //!this is wrong figuere out how to structure this. the project is broke
 	utils "githubapp.tld/server/internal/utilities"
 	"golang.org/x/oauth2"
@@ -44,7 +43,7 @@ func main() {
 	r.HandleFunc(reposURL+"?q={term}", routehandlers.Repos).Methods("GET")
 
 	r.HandleFunc(reposURL+"/{username}", func(w http.ResponseWriter, r *http.Request) {
-		routehandlers.ReposByUsername(ctx, w, r, &client, githubcalls.GetUsersReposByUsername)
+		routehandlers.ReposByUsername(ctx, w, r, client)
 	}).Methods("GET")
 
 	fmt.Println("Server listening!")
