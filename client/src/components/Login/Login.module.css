@@ -12,6 +12,7 @@
 
 .form-wrapper form div {
     display: block;
+    height: 45px;
 }
 
 form {

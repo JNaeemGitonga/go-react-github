@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import styles from './Login.module.css';
 import SignupViewContext from '../../context/signup-view-context';
-import { Input } from '@material-ui/core';
-import { Button } from '@material-ui/core';
-import { Container } from '@material-ui/core';
+import * as Mui from '../../shared/material-ui.components.js'
+
 
 export default class Login extends Component {
     state = {
@@ -24,7 +23,9 @@ export default class Login extends Component {
     render() {
         return (
             <div id={styles.login} className={styles['form-wrapper']}>
-               <Container className={styles['form-head']}/>
+               <Mui.Container className={styles['form-head']}>
+                   <div id='placeholder'/> {/* Without this place holder MUI will throw an error as this element must contain a child */}
+               </Mui.Container>
                 <form
                     onSubmit={e => {
                         e.preventDefault();
@@ -34,44 +35,48 @@ export default class Login extends Component {
                     id={styles['login-signup-form']}
                     aria-label="login form"
                 >
-                    <Input
-                        inputMarginDense
-                        required="true"
+                    <Mui.TextField
+                        required={true}
                         onChange={e =>
                             this.setState({ username: e.target.value })
                         }
                         type="name"
-                        placeholder="username"
+                        label="username"
                         aria-label="username input"
                     />
-                    <Input
-                        inputMarginDense
-                        required='true'
+                    <Mui.TextField
+                        required={true}
                         onChange={e =>
                             this.setState({ password: e.target.value })
                         }
                         type="password"
-                        placeholder="password"
+                        label="password"
                         aria-label="password input"
                     />
                     {this.state.showSignup && (
-                        <Input
-                            inputMarginDense
+                        <Mui.TextField
                             onChange={e =>
                                 this.setState({
                                     confirmPassword: e.target.value,
                                 })
                             }
-                            required="true"
+                            required={true}
                             type="password"
-                            placeholder="confirm password"
+                            label="confirm password"
                             aria-label="confirm password"
                         />
                     )}
                 </form>
-                <Button variant="outlined" color="primary" disableElevation>
+                <Mui.Button onClick={e => {
+                        e.preventDefault();
+                        if (this.state.showSignup) this.signup();
+                        else this.login();
+                    }}
+                    variant="outlined"
+                    color="primary"
+                    disableElevation>
                     Submit
-                </Button>
+                </Mui.Button>
                 <SignupViewContext.Provider value={this.state.signup}>
                     {this.state.showSignup && (
                         <span
