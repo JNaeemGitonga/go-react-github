@@ -11,9 +11,7 @@ To start this app locally:
 
 2. Clone this repo
 
-3. In your terminal run the following command: `$ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build`<br>
-the above `docker-compose` command will read from two `.yml` files to gather the info needed to start this container
-..
+3. In your terminal run the following command: `$ sh run.sh`.
 
 4. In your favorite browser visit: `$ http://localhost:9900`
 
