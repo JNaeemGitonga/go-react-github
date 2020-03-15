@@ -37,6 +37,7 @@
   "author": "Naeem Gitonga",
   "license": "UNLICENSED",
   "devDependencies": {
-    "eslint-loader": "^3.0.3"
+    "eslint-loader": "^3.0.3",
+    "typescript": "^3.8.3"
   }
 }

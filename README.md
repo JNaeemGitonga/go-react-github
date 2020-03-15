@@ -11,7 +11,7 @@ To start this app locally:
 
 2. Clone this repo
 
-3. In your terminal run the following command: `$ sh run.sh`.
+3. In your terminal run the following command: `$ sh run.sh dev` (for a production build omit `dev`).
 
 4. In your favorite browser visit: `$ http://localhost:9900`
 
