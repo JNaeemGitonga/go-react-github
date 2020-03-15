@@ -3,6 +3,6 @@ services:
   client:
     env_file: .env.prod
     ports:
-      - '80:9000'
+      - '80:9900'
   auth:
     env_file: .env.prod
