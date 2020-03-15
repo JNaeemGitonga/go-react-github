@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styles from './Login.module.css';
 import SignupViewContext from '../../context/signup-view-context';
 import { Input } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 
 export default class Login extends Component {
     state = {
@@ -22,6 +24,7 @@ export default class Login extends Component {
     render() {
         return (
             <div id={styles.login} className={styles['form-wrapper']}>
+               <Container className={styles['form-head']}/>
                 <form
                     onSubmit={e => {
                         e.preventDefault();
@@ -32,6 +35,7 @@ export default class Login extends Component {
                     aria-label="login form"
                 >
                     <Input
+                        inputMarginDense
                         required="true"
                         onChange={e =>
                             this.setState({ username: e.target.value })
@@ -41,6 +45,7 @@ export default class Login extends Component {
                         aria-label="username input"
                     />
                     <Input
+                        inputMarginDense
                         required='true'
                         onChange={e =>
                             this.setState({ password: e.target.value })
@@ -51,7 +56,7 @@ export default class Login extends Component {
                     />
                     {this.state.showSignup && (
                         <Input
-                        disableUnderline='true'
+                            inputMarginDense
                             onChange={e =>
                                 this.setState({
                                     confirmPassword: e.target.value,
@@ -63,29 +68,25 @@ export default class Login extends Component {
                             aria-label="confirm password"
                         />
                     )}
-
-                    <Input
-                        fullWidth='true'
-                        color='secondary'
-                        type="submit"
-                        value="Submit"
-                        aria-label="submit button"
-                    />
                 </form>
-
+                <Button variant="outlined" color="primary" disableElevation>
+                    Submit
+                </Button>
                 <SignupViewContext.Provider value={this.state.signup}>
                     {this.state.showSignup && (
                         <span
+                            className={styles['toggle-span']}
                             onClick={() => this.setState({ showSignup: false })}
                         >
-                            Login
+                            Click here to Login
                         </span>
                     )}
                     {!this.state.showSignup && (
                         <span
+                            className={styles['toggle-span']}
                             onClick={() => this.setState({ showSignup: true })}
                         >
-                            SignUp
+                            Click here to SignUp
                         </span>
                     )}
                 </SignupViewContext.Provider>

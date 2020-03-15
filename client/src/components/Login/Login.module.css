@@ -1,0 +1,24 @@
+.form-head {
+    height: 45px;
+    background-color: #3f51b5;
+}
+
+.form-wrapper {
+    background: white;
+    width: 45vw;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.form-wrapper form div {
+    display: block;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.toggle-span {
+    font-size: 12px;
+    text-decoration: underline;
+}
