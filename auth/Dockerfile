@@ -1,15 +1,13 @@
 # BUILD DOCKER IMAGE:
 
-FROM node:10.16
-RUN mkdir -p /opt/app
-WORKDIR /opt/app
+FROM node:12.16
+RUN mkdir -p /app
+WORKDIR /app
 
-COPY package.json /opt/app
-RUN npm i -g typescript
-RUN npm i -g ts-node
+COPY package.json /app
 
 RUN npm i
-COPY . /opt/app
-
-ENTRYPOINT [ "npm" ]
-CMD [ "start" ]
+COPY . /app
+RUN ls
+RUN chmod +x /app/start.sh
+ENTRYPOINT ["/bin/bash", "/app/start.sh"]

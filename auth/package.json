@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "tsc && node lib/index.js",
-    "dev": "nodemon"
+    "dev": "tsc-watch --onSuccess \"node lib/index.js\""
   },
   "keywords": [
     "node"
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "^13.9.1",
-    "tsc-watch": "^4.2.3"
+    "tsc-watch": "^4.2.3",
+    "typescript": "^3.8.3"
   }
 }

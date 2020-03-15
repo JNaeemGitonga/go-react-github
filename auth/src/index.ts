@@ -10,7 +10,7 @@ app.get('/', (_, res) => {
 
 
 app.listen(port, () => {
-  console.log(__dirname)
+  console.log('This is your working dir: ', __dirname)
   console.log()
-  console.log('May the force be with you on server port ' + port);
+  console.log('Grind hard on server port ' + port);
 });
