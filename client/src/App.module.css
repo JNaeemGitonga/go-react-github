@@ -4,3 +4,10 @@
   width: 100vw;
   background-color: #282c34;
 }
+
+.entry {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

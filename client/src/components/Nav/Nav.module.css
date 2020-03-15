@@ -3,9 +3,13 @@
   min-height: 48px;
 }
 
-#avatar-container {
-  float: right;
+.navBar {
+  width: 100vw;
+  min-height: 48px;
+  position: fixed;
+  top: 0;
 }
+
 
 .login-signup {
   position: absolute;
@@ -13,6 +17,10 @@
   right: 165px;
   top: 5px;
   font-size: 25px;
+}
+
+.login-signup:hover {
+  cursor: pointer;
 }
 
 span {

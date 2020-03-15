@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from '../../App.module.css';
 import Nav from '../Nav';
 import Login from '../Login';
 import Repos from '../Repos';
@@ -6,7 +7,7 @@ import Favorites from '../Favorites';
 
 export default class Entry extends Component {
     state = {
-        loggedIn: true,
+        loggedIn: false,
         repos: false,
         favorites: false,
     };
@@ -22,7 +23,7 @@ export default class Entry extends Component {
 
     render() {
         return (
-            <div>
+            <div className={styles.entry}>
                 <Nav loggedIn={this.state.loggedIn} setView={this.setView} />
                 {!this.state.loggedIn && (
                     <Login

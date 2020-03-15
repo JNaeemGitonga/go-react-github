@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './Login.module.css';
 import SignupViewContext from '../../context/signup-view-context';
+import { Input } from '@material-ui/core';
 
 export default class Login extends Component {
     state = {
@@ -17,6 +18,7 @@ export default class Login extends Component {
     signup = () => {
         console.log('sigasdfasdnup ', this.state);
     };
+
     render() {
         return (
             <div id={styles.login} className={styles['form-wrapper']}>
@@ -29,8 +31,8 @@ export default class Login extends Component {
                     id={styles['login-signup-form']}
                     aria-label="login form"
                 >
-                    <input
-                        required
+                    <Input
+                        required="true"
                         onChange={e =>
                             this.setState({ username: e.target.value })
                         }
@@ -38,8 +40,8 @@ export default class Login extends Component {
                         placeholder="username"
                         aria-label="username input"
                     />
-                    <input
-                        required
+                    <Input
+                        required='true'
                         onChange={e =>
                             this.setState({ password: e.target.value })
                         }
@@ -48,20 +50,23 @@ export default class Login extends Component {
                         aria-label="password input"
                     />
                     {this.state.showSignup && (
-                        <input
+                        <Input
+                        disableUnderline='true'
                             onChange={e =>
                                 this.setState({
                                     confirmPassword: e.target.value,
                                 })
                             }
-                            required
+                            required="true"
                             type="password"
                             placeholder="confirm password"
                             aria-label="confirm password"
                         />
                     )}
 
-                    <input
+                    <Input
+                        fullWidth='true'
+                        color='secondary'
                         type="submit"
                         value="Submit"
                         aria-label="submit button"
@@ -71,14 +76,14 @@ export default class Login extends Component {
                 <SignupViewContext.Provider value={this.state.signup}>
                     {this.state.showSignup && (
                         <span
-                            onClick={e => this.setState({ showSignup: false })}
+                            onClick={() => this.setState({ showSignup: false })}
                         >
                             Login
                         </span>
                     )}
                     {!this.state.showSignup && (
                         <span
-                            onClick={e => this.setState({ showSignup: true })}
+                            onClick={() => this.setState({ showSignup: true })}
                         >
                             SignUp
                         </span>

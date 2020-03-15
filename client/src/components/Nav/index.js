@@ -30,8 +30,8 @@ export default class Nav extends Component {
     }
     render() {
         return (
-            <div id={ styles.nav } >
-                <Mui.AppBar position='static'>
+            <div id='nav' className={styles.navBar}>
+                <Mui.AppBar position='static' >
                     <Mui.Tabs value={ this.state.value } onChange={ this.handleChange } aria-label='repos or favorites'>
                         { this.props.loggedIn &&  <Mui.Tab 
                                             label='Repos' { ...a11yProps(0) }

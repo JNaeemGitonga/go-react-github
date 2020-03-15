@@ -2,5 +2,7 @@ version: "3.7"
 services:
   client:
     env_file: .env.prod
+    ports:
+      - '80:9000'
   auth:
     env_file: .env.prod
