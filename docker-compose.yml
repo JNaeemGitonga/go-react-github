@@ -22,3 +22,11 @@ services:
     image: database
     ports: 
       - 9902:27017
+  auth:
+    build: ./auth
+    container_name: auth
+    image: auth
+    ports:
+      - '9903:9903'
+    volumes:
+      - ./auth:/app/

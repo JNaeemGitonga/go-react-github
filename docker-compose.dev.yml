@@ -2,3 +2,5 @@ version: "3.7"
 services:
   client:
     env_file: .env.dev
+  auth:
+    env_file: .env.dev

@@ -3,13 +3,17 @@
 ## Description
 This is a small distributed system built for users to access their own github accounts, save repos to a favorites list and update their list as needed.
 
-To start this app:
+I wanted to use microservices. My front-end is a dockerized react app. My data server is writtenn in Go. My auth service is written in Node
+
+To start this app locally:
 
 1. You will need to install Docker and Docker Compose.
 
 2. Clone this repo
 
-3. In your terminal run the following command: `$ docker-compose build && docker-compose run --rm` 
+3. In your terminal run the following command: `$ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build`<br>
+the above `docker-compose` command will read from two `.yml` files to gather the info needed to start this container
+..
 
 4. In your favorite browser visit: `$ http://localhost:9900`
 

@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "lib": ["es2017", "dom", "esnext.asynciterable"],
+        "moduleResolution": "node",
+        "noUnusedParameters": true,
+        "sourceMap": true,
+        "target": "es5",
+        "outDir": "lib",
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "baseUrl": ".",
+        "paths": {
+            "*": ["./types/*"]
+        },
+        "plugins": [
+            {
+                "name": "typescript-tslint-plugin",
+                "alwaysShowRuleFailuresAsWarnings": false,
+                "ignoreDefinitionFiles": true,
+                // "configFile": "./tslint.json",
+                "suppressWhileTypeErrorsPresent": false
+            }
+        ],
+        "typeRoots": ["./node_modules/@types"]
+    },
+    "exclude": ["./node_modules", "Dockerfile", "types", "**/*.spec.ts"]
+  }
+  

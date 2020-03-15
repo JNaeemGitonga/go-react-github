@@ -14,10 +14,11 @@ export default class Repos extends Component {
         let repos;
         try {
             repos = await request.get(`/api/repos/${username}`);
-            this.setState({ repos });
         } catch (err) {
             console.log('fail', err);
         }
+        
+        this.setState({ repos });
     };
     render() {
         return <div id="repos">You see me!</div>;
