@@ -24,6 +24,6 @@
         ],
         "typeRoots": ["./node_modules/@types"]
     },
-    "exclude": ["./node_modules", "Dockerfile", "types", "**/*.spec.ts"]
-  }
+    "exclude": ["node_modules", "Dockerfile", "lib", "types", "**/*.spec.ts"]
+}
   

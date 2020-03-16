@@ -8,6 +8,7 @@
     width: 45vw;
     padding: 10px;
     border-radius: 10px;
+    max-width: 350px
 }
 
 .form-wrapper form div {
@@ -19,7 +20,15 @@ form {
     margin-bottom: 20px;
 }
 
+#confirm-password-input, #password-input, #username-input {
+    padding: 25px 0 7px;
+}
+
 .toggle-span {
     font-size: 12px;
     text-decoration: underline;
+}
+
+.toggle-span:hover {
+    cursor: pointer;
 }

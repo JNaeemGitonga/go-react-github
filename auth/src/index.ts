@@ -4,8 +4,12 @@ config();
 const port  = process.env.PORT || 9903;
 const app = express();
 
-app.get('/', (_, res): void => {
-  res.json('i work')
+app.post('/api/auth/login', (_req, res): void => {
+  res.json('I got this')
+});
+
+app.post('/api/auth/signup', (_req, res): void => {
+  res.json('I got signed up')
 })
 
 app.listen(port, (): void => {

@@ -37,6 +37,8 @@
   "author": "Naeem Gitonga",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@types/dom-inputevent": "^1.0.5",
+    "@types/superagent": "^4.1.7",
     "eslint-loader": "^3.0.3",
     "typescript": "^3.8.3"
   }
