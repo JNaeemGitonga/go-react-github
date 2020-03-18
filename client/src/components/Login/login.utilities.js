@@ -1,4 +1,4 @@
-export default class Utilities {
+export default class LoginUtilities {
     /**
      * @name confirmPasswordIsInvalid
      * @param {string} password 

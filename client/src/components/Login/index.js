@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import styles from './Login.module.css';
 import SignupViewContext from '../../context/signup-view-context';
 import * as Mui from '../../shared/material-ui.components';
-import Utilities from '../../shared/utilities';
+import LoginUtilities from './login.utilities';
 import ApiCalls from '../../shared/api-calls';
 
 export default class Login extends Component {
+    apiCalls;
+    utilities;
+    constructor(apiCalls = ApiCalls, utilities = LoginUtilities) {
+        super();
+        this.apiCalls = apiCalls;
+        this.utilities = utilities;
+    }
     state = {
         showSignup: this.context,
         username: '',
@@ -16,25 +23,37 @@ export default class Login extends Component {
     };
 
     componentDidMount() {
-        document.getElementsByTagName('form')[0].addEventListener('keyup', this.checkKeyCodeAndSubmit)
+        //* check for the existance of a form
+        //* before adding a listener to it. Why? Because if we don't
+        //* our test will fail since when running test form may be undefined.
+        //* this is probably due to the fact that jest runs an approximation
+        //* of the real browser behavior. https://create-react-app.dev/docs/running-tests
+        const form = document.getElementsByTagName('form')[0];
+        if (form) {
+            form.addEventListener('keyup', this.checkKeyCodeAndSubmit);
+        }
     }
 
     checkKeyCodeAndSubmit = e => e.keyCode === 13 && this.submit();
 
     login = async () => {
-        const token = await ApiCalls.login({ username: this.state.username, password: this.state.password });
-        console.log(token)
+        const res = await this.apiCalls.login({ username: this.state.username, password: this.state.password });
+        if (res.statusCode === 200) {
+            //* redirect to inside app
+        } else {
+            //* call an error function
+        }
     };
 
     signup = async () => {
         console.log('called signup')
-        const token = await ApiCalls.signup({ username: this.state.username, password: this.state.password })
+        const token = await this.apiCalls.signup({ username: this.state.username, password: this.state.password })
         console.log('signup res ', token);
     };
 
     submit = () => {
-        const usernameInvalid = Utilities.isInputInvalid('username', this.state.username);
-        const passwordInvalid = Utilities.isInputInvalid('password', this.state.password);
+        const usernameInvalid = this.utilities.isInputInvalid('username', this.state.username);
+        const passwordInvalid = this.utilities.isInputInvalid('password', this.state.password);
         this.setState({ passwordInvalid, usernameInvalid });
         if (!passwordInvalid && !usernameInvalid) {
             if (this.state.showSignup) this.signup();
@@ -48,7 +67,6 @@ export default class Login extends Component {
 
     render() {
         const {
-            signup,
             showSignup,
             password,
             confirmPassword,
@@ -56,9 +74,7 @@ export default class Login extends Component {
             passwordInvalid,
         } = this.state;
 
-        const confirmPasswordError =
-            showSignup &&
-            Utilities.confirmPasswordIsInvalid(password, confirmPassword);
+        const confirmPasswordError = showSignup && this.utilities.confirmPasswordIsInvalid(password, confirmPassword);
 
         return (
             <div id={styles.login} className={styles['form-wrapper']}>
@@ -80,7 +96,7 @@ export default class Login extends Component {
                         onChange={({ target }) =>
                             this.setState({
                                 username: target.value,
-                                usernameInvalid: Utilities.isInputInvalid(
+                                usernameInvalid: this.utilities.isInputInvalid(
                                     'username',
                                     target.value
                                 ),
@@ -97,7 +113,7 @@ export default class Login extends Component {
                         onChange={({ target }) =>
                             this.setState({
                                 password: target.value,
-                                passwordInvalid: Utilities.isInputInvalid(
+                                passwordInvalid: this.utilities.isInputInvalid(
                                     'password',
                                     target.value
                                 ),
@@ -134,7 +150,7 @@ export default class Login extends Component {
                 >
                     Submit
                 </Mui.Button>
-                <SignupViewContext.Provider value={signup}>
+                <SignupViewContext.Provider value={showSignup}>
                     {showSignup && (
                         <span
                             className={styles['toggle-span']}

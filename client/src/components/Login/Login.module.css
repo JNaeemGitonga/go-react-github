@@ -27,6 +27,8 @@ form {
 .toggle-span {
     font-size: 12px;
     text-decoration: underline;
+    white-space: nowrap;
+
 }
 
 .toggle-span:hover {
