@@ -3,7 +3,7 @@ const proxy = require('http-proxy-middleware');
 module.exports = function(app) {
     const server = process.env.REACT_APP_HOST_SERVER;
     const auth = process.env.REACT_APP_HOST_AUTH;
-    console.log('LOOK AT THE HOST', auth)
+    console.log('THE HOST ', auth)
     app.use(
         '/api/auth',
         proxy({

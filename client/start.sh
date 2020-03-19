@@ -4,7 +4,6 @@ NODE_ENV=$(printenv NODE_ENV)
 echo "The NOD_ENV is: $NODE_ENV"
 
 if [ "$NODE_ENV" = "development" ]; then
-    npm i typescript --save-dev
     npm start
 else
     #* the following is one way to make and serve a production build of the client

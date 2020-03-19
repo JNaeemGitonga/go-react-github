@@ -2,17 +2,11 @@ import React, { Component } from 'react';
 import styles from './Login.module.css';
 import SignupViewContext from '../../context/signup-view-context';
 import * as Mui from '../../shared/material-ui.components';
-import LoginUtilities from './login.utilities';
+import Button from '../../shared/Button';
+import LoginUtilities from './Login.utilities';
 import ApiCalls from '../../shared/api-calls';
 
 export default class Login extends Component {
-    apiCalls;
-    utilities;
-    constructor(apiCalls = ApiCalls, utilities = LoginUtilities) {
-        super();
-        this.apiCalls = apiCalls;
-        this.utilities = utilities;
-    }
     state = {
         showSignup: this.context,
         username: '',
@@ -37,7 +31,7 @@ export default class Login extends Component {
     checkKeyCodeAndSubmit = e => e.keyCode === 13 && this.submit();
 
     login = async () => {
-        const res = await this.apiCalls.login({ username: this.state.username, password: this.state.password });
+        const res = await ApiCalls.login({ username: this.state.username, password: this.state.password });
         if (res.statusCode === 200) {
             //* redirect to inside app
         } else {
@@ -47,13 +41,13 @@ export default class Login extends Component {
 
     signup = async () => {
         console.log('called signup')
-        const token = await this.apiCalls.signup({ username: this.state.username, password: this.state.password })
+        const token = await ApiCalls.signup({ username: this.state.username, password: this.state.password })
         console.log('signup res ', token);
     };
 
     submit = () => {
-        const usernameInvalid = this.utilities.isInputInvalid('username', this.state.username);
-        const passwordInvalid = this.utilities.isInputInvalid('password', this.state.password);
+        const usernameInvalid = LoginUtilities.isInputInvalid('username', this.state.username);
+        const passwordInvalid = LoginUtilities.isInputInvalid('password', this.state.password);
         this.setState({ passwordInvalid, usernameInvalid });
         if (!passwordInvalid && !usernameInvalid) {
             if (this.state.showSignup) this.signup();
@@ -74,7 +68,7 @@ export default class Login extends Component {
             passwordInvalid,
         } = this.state;
 
-        const confirmPasswordError = showSignup && this.utilities.confirmPasswordIsInvalid(password, confirmPassword);
+        const confirmPasswordError = showSignup && LoginUtilities.confirmPasswordIsInvalid(password, confirmPassword);
 
         return (
             <div id={styles.login} className={styles['form-wrapper']}>
@@ -96,7 +90,7 @@ export default class Login extends Component {
                         onChange={({ target }) =>
                             this.setState({
                                 username: target.value,
-                                usernameInvalid: this.utilities.isInputInvalid(
+                                usernameInvalid: LoginUtilities.isInputInvalid(
                                     'username',
                                     target.value
                                 ),
@@ -113,7 +107,7 @@ export default class Login extends Component {
                         onChange={({ target }) =>
                             this.setState({
                                 password: target.value,
-                                passwordInvalid: this.utilities.isInputInvalid(
+                                passwordInvalid: LoginUtilities.isInputInvalid(
                                     'password',
                                     target.value
                                 ),
@@ -139,17 +133,9 @@ export default class Login extends Component {
                         />
                     )}
                 </form>
-                <Mui.Button
-                    onClick={e => {
-                        e.preventDefault();
-                        this.submit();
-                    }}
-                    variant="outlined"
-                    color="primary"
-                    disableElevation
-                >
-                    Submit
-                </Mui.Button>
+               
+                <Button action={this.submit} variant='outlined' color='primary' btnText='Submit'/>
+                
                 <SignupViewContext.Provider value={showSignup}>
                     {showSignup && (
                         <span

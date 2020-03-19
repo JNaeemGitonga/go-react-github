@@ -1,7 +1,7 @@
 {
   "name": "github-app",
   "version": "0.0.1",
-  "description": "react web app that talks to golang server",
+  "description": "react web app that talks to a golang and a typescript/node server",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.2",
@@ -40,8 +40,10 @@
     "@types/dom-inputevent": "^1.0.5",
     "@types/react-test-renderer": "^16.9.2",
     "@types/superagent": "^4.1.7",
+    "chai": "^4.2.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint-loader": "^3.0.3",
-    "react-test-renderer": "^16.13.0",
-    "typescript": "^3.8.3"
+    "react-test-renderer": "^16.13.0"
   }
 }
