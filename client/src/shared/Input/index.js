@@ -24,6 +24,7 @@ const Input = ({ updateComponent, error, required, id, utilities, type, label })
         required={required}
         error={error}
         onChange={({ target }) => {
+            console.log(target.value)
             let setStateObject;
             if (utilities[1].length === 3) {
                 setStateObject = {

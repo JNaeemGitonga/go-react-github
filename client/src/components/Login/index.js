@@ -36,8 +36,8 @@ export default class Login extends Component {
 
     checkKeyCodeAndSubmit = e => e.keyCode === 13 && this.submit();
 
-    login = async () => {
-        const res = await ApiCalls.login({
+    login = () => {
+        const res = ApiCalls.login({
             username: this.state.username,
             password: this.state.password,
         });

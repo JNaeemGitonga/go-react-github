@@ -1,4 +1,5 @@
 import request from 'superagent';
+import arn from './api-route-names';
 
 export default class ApiCalls {
 
@@ -7,9 +8,14 @@ export default class ApiCalls {
      * @param {{username: string, password: string}} data
      * @return Promise<string>
      */
-    static login (data) {
-        console.log('calling login from utility ')
-        return request.post('/api/auth/login').send(data).set('accept', 'json');
+    static async login (data) {
+        let response;
+        try {
+            response = await request.post(arn.login).send(data).set('accept', 'json');
+        } catch (e) {
+            response = e;
+        }
+        return response;
     }
 
     /**
@@ -17,8 +23,13 @@ export default class ApiCalls {
      * @param {{username: string, password: string}} data
      * @return Promise<string>
      */
-    static signup (data) {
-        console.log('calling signup from utility ')
-        return request.post('/api/auth/signup').send(data).set('accept', 'json');
+    static async signup (data) {
+        let response;
+        try {
+            response = await request.post(arn.signup).send(data).set('accept', 'json');
+        } catch (e) {
+            response = e;
+        }
+        return response;
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from './index';
+import Button from './index.js';
 
 describe('Button should render', () => {
     it('renders without crashing', () => {
