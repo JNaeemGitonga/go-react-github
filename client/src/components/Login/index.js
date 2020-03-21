@@ -3,7 +3,6 @@ import styles from './Login.module.css';
 import SignupViewContext from '../../context/signup-view-context';
 import * as Mui from '../../shared/material-ui.components';
 import Button from '../../shared/Button';
-import Input from '../../shared/Input';
 import LoginUtilities from './Login.utilities';
 import ApiCalls from '../../shared/api-calls';
 import n from '../../shared/constants/css-names';
@@ -36,8 +35,8 @@ export default class Login extends Component {
 
     checkKeyCodeAndSubmit = e => e.keyCode === 13 && this.submit();
 
-    login = () => {
-        const res = ApiCalls.login({
+    login = async () => {
+        const res = await ApiCalls.login({
             username: this.state.username,
             password: this.state.password,
         });
@@ -48,8 +47,8 @@ export default class Login extends Component {
         }
     };
 
-    signup = () => {
-        const token = ApiCalls.signup({
+    signup = async () => {
+        const token = await ApiCalls.signup({
             username: this.state.username,
             password: this.state.password,
         });
@@ -57,19 +56,32 @@ export default class Login extends Component {
     };
 
     submit = () => {
+        const { username, showSignup, password, confirmPassword } = this.state;
+
         const usernameInvalid = LoginUtilities.isInputInvalid(
             ln.username,
-            this.state.username
+            username
         );
+
         const passwordInvalid = LoginUtilities.isInputInvalid(
             ln.password,
-            this.state.password
+            password
         );
+
         this.setState({ passwordInvalid, usernameInvalid });
-        if (!passwordInvalid && !usernameInvalid) {
-            if (this.state.showSignup) this.signup();
-            else this.login();
-        }
+
+        if ((passwordInvalid || usernameInvalid) && !showSignup) return;
+        
+        if (!showSignup) return this.login();
+
+        const confirmPasswordInvalid = LoginUtilities.confirmPasswordIsInvalid(
+            password,
+            confirmPassword
+        );
+
+        this.setState({ confirmPasswordInvalid });
+
+        !confirmPasswordInvalid && this.signup();
     };
 
     componentWillUnmount() {
@@ -88,6 +100,8 @@ export default class Login extends Component {
             confirmPasswordInvalid,
             usernameInvalid,
             passwordInvalid,
+            password,
+            confirmPassword
         } = this.state;
 
         return (
@@ -98,30 +112,51 @@ export default class Login extends Component {
                 <form id={styles[n.loginSignupFormId]}
                       aria-label="login form">
 
-                    <Input updateComponent={this.updateComponent}
-                           id={styles[n.usernameInputId]}
-                           required={true}
-                           error={usernameInvalid}
-                           utilities={[ln.username, [vn.usernameInvalid, LoginUtilities.isInputInvalid]]}
-                           type={ln.name}
-                           label={ln.username}
+                    <Mui.TextField  id={styles[n.usernameInputId]}
+                            required={true}
+                            error={usernameInvalid}
+                            type={ln.name}
+                            label={ln.username}
+                            onChange={({ target }) => {
+                                this.setState({
+                                    [ln.username]: target.value,
+                                    [vn.usernameInvalid]: LoginUtilities.isInputInvalid(ln.username, target.value)
+                                });
+               
+                            }}
                     />
-                    <Input updateComponent={this.updateComponent}
-                           id={styles[n.passwordInputId]}
-                           error={passwordInvalid}
-                           required={true}
-                           utilities={[ln.password, [vn.passwordInvalid, LoginUtilities.isInputInvalid]]}
-                           type={ln.password}
-                           label={ln.password}
+                    <Mui.TextField  id={styles[n.passwordInputId]}
+                                    error={passwordInvalid}
+                                    required={true}
+                                    type={ln.password}
+                                    label={ln.password}
+                                    onChange={({ target }) => {
+                                        if (showSignup) LoginUtilities.confirmPasswordIsInvalid(password, confirmPassword)
+                                        this.setState({
+                                            [ln.password]: target.value,
+                                            [vn.passwordInvalid]: LoginUtilities.isInputInvalid(ln.password, target.value)
+                                        });
+                                        
+                                        if (showSignup) {
+                                            this.setState({
+                                                [vn.confirmPasswordInvalid]: LoginUtilities.confirmPasswordIsInvalid(target.value, confirmPassword) 
+                                            });
+                                        }
+                                    }}
                     />
                     {showSignup && (
-                        <Input updateComponent={this.updateComponent}
-                               id={styles[n.confirmPasswordInputId]}
-                               error={confirmPasswordInvalid}
-                               required={true}
-                               utilities={[ln.confirmPasswordCC, [vn.confirmPasswordInvalid, LoginUtilities.confirmPasswordIsInvalid, this.state.password]]}
-                               type={ln.password}
-                               label={ln.confirmPassword}
+                        <Mui.TextField  id={styles[n.confirmPasswordInputId]}
+                                error={confirmPasswordInvalid}
+                                required={true}
+                                type={ln.password}
+                                label={ln.confirmPassword}
+                                onChange={({ target }) => {
+                                    this.setState({
+                                        [ln.confirmPasswordCC]: target.value,
+                                        [vn.confirmPasswordInvalid]: LoginUtilities.confirmPasswordIsInvalid(password, target.value)
+                                    });
+                   
+                                }}
                         />
                     )}
                 </form>

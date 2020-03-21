@@ -1,12 +1,14 @@
 /** Class with methods for login */
 export default class LoginUtilities {
     /**
-     * @name confirmPasswordIsInvalid
+     * Verifies confirm password input
      * @param {string} password 
      * @param {string} confirmPassword 
      * @returns boolean
      */
     static confirmPasswordIsInvalid (password, confirmPassword) {
+        if (confirmPassword === '') return true;
+
         if (!password && !confirmPassword) return true;
 
         if (confirmPassword !== password) return true;
