@@ -6,9 +6,9 @@ import Button from '../../shared/Button';
 import Input from '../../shared/Input';
 import LoginUtilities from './Login.utilities';
 import ApiCalls from '../../shared/api-calls';
-import n from '../../shared/css-names';
-import vn from '../../shared/validator-names';
-import ln from '../../shared/label-names';
+import n from '../../shared/constants/css-names';
+import vn from '../../shared/constants/validator-names';
+import ln from '../../shared/constants/label-names';
 
 
 export default class Login extends Component {
@@ -48,8 +48,8 @@ export default class Login extends Component {
         }
     };
 
-    signup = async () => {
-        const token = await ApiCalls.signup({
+    signup = () => {
+        const token = ApiCalls.signup({
             username: this.state.username,
             password: this.state.password,
         });

@@ -1,5 +1,5 @@
 import request from 'superagent';
-import arn from './api-route-names';
+import arn from './constants/api-route-names';
 
 export default class ApiCalls {
 
