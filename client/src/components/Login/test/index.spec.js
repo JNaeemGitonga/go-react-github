@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Login from '../index';
+
 import { shallow, mount, configure } from 'enzyme';
 import { expect as expectChai } from 'chai';
 import Adapter from 'enzyme-adapter-react-16';
@@ -28,20 +29,33 @@ describe('Component should render', () => {
 })
 
 describe('All methods should be called', () => {
+    const wrapper = shallow(<Login />);
+
     it('should call login', () => {
-        const wrapper = shallow(<Login />);
-        expectChai(wrapper.instance().login());
+        expect(wrapper.instance().login());
     });
 
     it('should call signup', () => {
-        const wrapper = shallow(<Login />);
-        expectChai(wrapper.instance().signup());
+        expect(wrapper.instance().signup());
     });
 
-    // it('should call submit', () => {
-    //     const wrapper = shallow(<);
-    //     expectChai(wrapper.instance().submit());
-    // });
+    it('should call submit', () => {
+        expect(wrapper.instance().submit());
+    });
+});
+
+describe('Login and submit should not be called', () => {
+    const wrapper = mount(<Login />)
+    it('should not call login', () => {
+        wrapper.setState({
+            passwordInvalid: true,
+            confirmPasswordInvalid: true,
+            usernameInvalid: true,
+        });
+
+        wrapper.find('button').simulate('click');
+        expect(!wrapper.instance().login)
+    });
 
 
 });

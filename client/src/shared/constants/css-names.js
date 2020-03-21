@@ -7,7 +7,7 @@ const cssNames = {
     passwordInputId: 'password-input',
     confirmPasswordInputId: 'confirm-password-input',
     toggleSpan: 'toggle-span',
-
+    loginSignupSubmitId: 'login-signup-submit',
 }
 
 export default cssNames;

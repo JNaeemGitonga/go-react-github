@@ -49,7 +49,7 @@ export default class Login extends Component {
             username: this.state.username,
             password: this.state.password,
         });
-        
+
         LoginUtilities.handleLogin(res);
     };
 
@@ -105,10 +105,10 @@ export default class Login extends Component {
         return (
             <div id={styles.login} className={styles[n.formWrapper]}>
                 <Mui.Container className={styles[n.formHead]}>
-                    <div id="placeholder" />{/* Without this place holder MUI will throw an error as this element must contain a child */}
+                    <div id={n.placeHolderId} />{/* Without this place holder MUI will throw an error as this element must contain a child */}
                 </Mui.Container>
                 <form id={styles[n.loginSignupFormId]}
-                      aria-label="login form">
+                      aria-label={ln.loginForm}>
 
                     <Mui.TextField  id={styles[n.usernameInputId]}
                             required={true}
@@ -159,10 +159,11 @@ export default class Login extends Component {
                     )}
                 </form>
 
-                <Button action={this.submit}
-                        variant="outlined"
-                        color="primary"
-                        btnText="Submit"
+                <Button id={n.loginSignupSubmitId}
+                        action={this.submit}
+                        variant={"outlined"}
+                        color={"primary"}
+                        btnText={"Submit"}
                 />
 
                 <SignupViewContext.Provider value={showSignup}>

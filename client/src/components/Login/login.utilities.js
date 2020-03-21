@@ -1,3 +1,4 @@
+/*eslint no-unused-vars: 0*/ //* we are using this in our jsdoc see below
 import { Response } from 'superagent';
 
 /** Class with methods for login */
