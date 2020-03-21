@@ -45,7 +45,6 @@ export default class LoginUtilities {
     /**
      * handles login response
      * @param {Response} response 
-
      */
     static handleLogin(response) {
         if (response.statusCode === 200) {

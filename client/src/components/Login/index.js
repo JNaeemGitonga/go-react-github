@@ -5,7 +5,7 @@ import * as Mui from '../../shared/material-ui.components';
 import Button from '../../shared/Button';
 import LoginUtilities from './Login.utilities';
 import ApiCalls from '../../shared/api-calls';
-import n from '../../shared/constants/css-names';
+import cn from '../../shared/constants/css-names';
 import vn from '../../shared/constants/validator-names';
 import ln from '../../shared/constants/label-names';
 
@@ -103,14 +103,14 @@ export default class Login extends Component {
         } = this.state;
 
         return (
-            <div id={styles.login} className={styles[n.formWrapper]}>
-                <Mui.Container className={styles[n.formHead]}>
-                    <div id={n.placeHolderId} />{/* Without this place holder MUI will throw an error as this element must contain a child */}
+            <div id={styles.login} className={styles[cn.formWrapper]}>
+                <Mui.Container className={styles[cn.formHead]}>
+                    <div id={cn.placeHolderId} />{/* Without this place holder MUI will throw an error as this element must contain a child */}
                 </Mui.Container>
-                <form id={styles[n.loginSignupFormId]}
+                <form id={styles[cn.loginSignupFormId]}
                       aria-label={ln.loginForm}>
 
-                    <Mui.TextField  id={styles[n.usernameInputId]}
+                    <Mui.TextField  id={styles[cn.usernameInputId]}
                             required={true}
                             error={usernameInvalid}
                             type={ln.name}
@@ -123,7 +123,7 @@ export default class Login extends Component {
                
                             }}
                     />
-                    <Mui.TextField  id={styles[n.passwordInputId]}
+                    <Mui.TextField  id={styles[cn.passwordInputId]}
                                     error={passwordInvalid}
                                     required={true}
                                     type={ln.password}
@@ -143,7 +143,7 @@ export default class Login extends Component {
                                     }}
                     />
                     {showSignup && (
-                        <Mui.TextField  id={styles[n.confirmPasswordInputId]}
+                        <Mui.TextField  id={styles[cn.confirmPasswordInputId]}
                                 error={confirmPasswordInvalid}
                                 required={true}
                                 type={ln.password}
@@ -159,17 +159,17 @@ export default class Login extends Component {
                     )}
                 </form>
 
-                <Button id={n.loginSignupSubmitId}
+                <Button id={cn.loginSignupSubmitId}
                         action={this.submit}
-                        variant={"outlined"}
-                        color={"primary"}
-                        btnText={"Submit"}
+                        variant={cn.outlined}
+                        color={cn.primary}
+                        btnText={ln.submit}
                 />
 
                 <SignupViewContext.Provider value={showSignup}>
                     {showSignup && (
                         <span
-                            className={styles[n.toggleSpan]}
+                            className={styles[cn.toggleSpan]}
                             onClick={() => this.setState({ showSignup: false })}
                         >
                             Click here to Login
@@ -177,7 +177,7 @@ export default class Login extends Component {
                     )}
                     {!showSignup && (
                         <span
-                            className={styles[n.toggleSpan]}
+                            className={styles[cn.toggleSpan]}
                             onClick={() => this.setState({ showSignup: true })}
                         >
                             Click here to SignUp

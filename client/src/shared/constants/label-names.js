@@ -4,7 +4,8 @@ const labelNames = {
     password: 'password',
     confirmPasswordCC: 'confirmPassword',
     confirmPassword: 'confirm password',
-    loginForm: 'Login form'
+    loginForm: 'Login form',
+    submit: 'Submit',
 }
 
 export default labelNames;

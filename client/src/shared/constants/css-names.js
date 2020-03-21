@@ -8,6 +8,8 @@ const cssNames = {
     confirmPasswordInputId: 'confirm-password-input',
     toggleSpan: 'toggle-span',
     loginSignupSubmitId: 'login-signup-submit',
+    primary: 'primary',
+    outlined: 'outlined',
 }
 
 export default cssNames;
