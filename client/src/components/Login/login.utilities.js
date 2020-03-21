@@ -1,3 +1,4 @@
+/** Class with methods for login */
 export default class LoginUtilities {
     /**
      * @name confirmPasswordIsInvalid
@@ -14,6 +15,7 @@ export default class LoginUtilities {
     }
 
     /**
+     * Check if input is valid
      * @name isInputInvalid
      * @param {string} type 
      * @param {string} value
