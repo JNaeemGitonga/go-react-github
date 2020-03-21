@@ -1,3 +1,5 @@
+import { Response } from 'superagent';
+
 /** Class with methods for login */
 export default class LoginUtilities {
     /**
@@ -18,10 +20,9 @@ export default class LoginUtilities {
 
     /**
      * Check if input is valid
-     * @name isInputInvalid
      * @param {string} type 
      * @param {string} value
-     * @param {function} _cb //* this will be an api call to check if username has been used before
+     * @param {Function} _cb //* this will be an api call to check if username has been used before
      * @returns boolean
      */
     static isInputInvalid(type, value, _cb) {
@@ -37,6 +38,19 @@ export default class LoginUtilities {
                 return value.length < 5;
             defalut:
                 return false;
+        }
+    }
+
+    /**
+     * handles login response
+     * @param {Response} response 
+
+     */
+    static handleLogin(response) {
+        if (response.statusCode === 200) {
+            //* redirect to inside app
+        } else {
+            //* call an error function
         }
     }
 }

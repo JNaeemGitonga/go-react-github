@@ -40,19 +40,17 @@ export default class Login extends Component {
             username: this.state.username,
             password: this.state.password,
         });
-        if (res.statusCode === 200) {
-            //* redirect to inside app
-        } else {
-            //* call an error function
-        }
+
+        LoginUtilities.handleLogin(res);
     };
 
     signup = async () => {
-        const token = await ApiCalls.signup({
+        const res = await ApiCalls.signup({
             username: this.state.username,
             password: this.state.password,
         });
-        console.log('signup res ', token);
+        
+        LoginUtilities.handleLogin(res);
     };
 
     submit = () => {
