@@ -10,12 +10,13 @@ matrix:
 
     - language: go
       go: "1.13"
+      env:
+        - GO111MODULE=on
+      go_import_path: server/internal
       before_script:
         - cd server
-
       script:
-      - env GO111MODULE=on go build
-      - env GO111MODULE=on sh test.sh
+      - sh test.sh
 
 # notifications:
 #   email:
