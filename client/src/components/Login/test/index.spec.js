@@ -3,21 +3,10 @@ import ReactDOM from 'react-dom';
 import Login from '../index';
 
 import { shallow, mount, configure } from 'enzyme';
-import { expect as expectChai } from 'chai';
 import Adapter from 'enzyme-adapter-react-16';
-import cn from '../../../shared/constants/css-names';
+
 
 configure({ adapter: new Adapter() });
-
-const mockApiCalls = class MockApiCalls { 
-    static login() { return Promise.resolve('Logged In')}
-    static submit() {
-        return Promise.resolve('Submitted');
-    }
-}
-
-const mockLoginUtilities = class MockLoginUtilities {
-}
 
 beforeEach(() => {
 });;
