@@ -1,0 +1,19 @@
+matrix:
+  include:
+    - language: node_js
+      node_js: 12.6.0
+      before_script:
+        - cd client
+      script:
+        - npm test
+
+    - language: go
+      go: 1.13.0
+      before_script:
+        - cd server
+      script:
+        - sh test.sh
+
+notifications:
+  email:
+    - jngincorporated@gmail.com
