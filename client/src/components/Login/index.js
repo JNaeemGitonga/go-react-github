@@ -3,7 +3,7 @@ import styles from './Login.module.css';
 import SignupViewContext from '../../context/signup-view-context';
 import * as Mui from '../../shared/material-ui.components';
 import Button from '../../shared/Button';
-import LoginUtilities from './Login.utilities';
+import LoginUtilities from './Login.utilities.js';
 import ApiCalls from '../../shared/api-calls';
 import cn from '../../shared/constants/css-names';
 import vn from '../../shared/constants/validator-names';
@@ -185,7 +185,7 @@ export default class Login extends Component {
             </div>
         );
     }
-    
+
 }
 
 Login.contextType = SignupViewContext;

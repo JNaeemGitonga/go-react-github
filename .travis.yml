@@ -8,7 +8,7 @@ matrix:
         - npm i && npm test
 
     - language: go
-      go: 1.13.0
+      go: "1.13"
       before_script:
         - cd server
       script:

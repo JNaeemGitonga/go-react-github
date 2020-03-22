@@ -1,4 +1,4 @@
-import LoginUtilities from '../login.utilities';
+import LoginUtilities from '../login.utilities.js';
 
 describe('Utilities Test Suite', () => {
 
