@@ -12,7 +12,7 @@ matrix:
       before_script:
         - cd server
       script:
-        - sh test.sh
+        - go build -o main . && sh test.sh
 
 notifications:
   email:
