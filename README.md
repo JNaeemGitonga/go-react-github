@@ -29,3 +29,6 @@ To start this app locally:
 5. How I got my test working... Well, I was having some issues with a `panic: runtime error: index out of range [3] with length 3 ` error. I was trying to access an index that didn't exists. 
 
 6. With Go Modules all you need to do is start your app. No need to do a `go get github.com/some-package`.
+
+7. While working with TravisCI I noticed I was having trouble with my build.  I had renamed a file a week or so back and was unaware that github had not registered the change. In the github cache the file name remained the same. In order to fix that I needed to run `git rm --cache client/src/components/Login/login.utilities.js`. That command would remove the old filename and I could then use the new one.  After that I no longer received the following error. <br/>
+![Screen Shot 2020-03-22 at 11 02 45 AM](https://user-images.githubusercontent.com/26694930/77252875-2ba84e80-6c2d-11ea-88e1-d15c616ae363.png)
