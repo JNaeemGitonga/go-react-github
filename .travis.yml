@@ -4,16 +4,19 @@ matrix:
       node_js: 12.6.0
       before_script:
         - cd client
+        - npm i
       script:
-        - npm i && npm test
+        - npm test
 
     - language: go
       go: "1.13"
       before_script:
         - cd server
+        - go mod init githubapp.tld/server
+        - go build -o main . 
       script:
-        - go build -o main . && sh test.sh
+        - sh test.sh
 
-notifications:
-  email:
-    - jngincorporated@gmail.com
+# notifications:
+#   email:
+#     - jngincorporated@gmail.com
