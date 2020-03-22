@@ -5,7 +5,7 @@ matrix:
       before_script:
         - cd client
       script:
-        - npm test
+        - npm i && npm test
 
     - language: go
       go: 1.13.0
