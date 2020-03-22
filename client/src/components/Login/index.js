@@ -168,17 +168,15 @@ export default class Login extends Component {
 
                 <SignupViewContext.Provider value={showSignup}>
                     {showSignup && (
-                        <span
-                            className={styles[cn.toggleSpan]}
-                            onClick={() => this.setState({ showSignup: false })}
+                        <span className={styles[cn.toggleSpan]}
+                              onClick={() => this.setState({ showSignup: false })}
                         >
                             Click here to Login
                         </span>
                     )}
                     {!showSignup && (
-                        <span
-                            className={styles[cn.toggleSpan]}
-                            onClick={() => this.setState({ showSignup: true })}
+                        <span className={styles[cn.toggleSpan]}
+                              onClick={() => this.setState({ showSignup: true })}
                         >
                             Click here to SignUp
                         </span>
@@ -187,6 +185,7 @@ export default class Login extends Component {
             </div>
         );
     }
+    
 }
 
 Login.contextType = SignupViewContext;
