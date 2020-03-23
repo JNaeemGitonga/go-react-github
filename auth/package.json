@@ -4,8 +4,8 @@
   "description": "authentication service",
   "main": "app.js",
   "scripts": {
-    "start": "tsc && node lib/index.js",
-    "dev": "tsc-watch --onSuccess \"node lib/index.js\""
+    "start": "tsc && node lib/app.js",
+    "dev": "tsc-watch --onSuccess \"node lib/app.js\""
   },
   "keywords": [
     "node"

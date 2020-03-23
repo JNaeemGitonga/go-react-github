@@ -18,6 +18,10 @@ matrix:
       script:
       - sh test.sh
 
-# notifications:
-#   email:
-#     - jngincorporated@gmail.com
+notifications:
+  email:
+    if: branch = master
+    recipients:
+       - jngincorporated@gmail.com
+    on_success: never
+    on_failure: always

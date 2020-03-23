@@ -3,14 +3,12 @@ import { config } from 'dotenv';
 config();
 const port  = process.env.PORT || 9903;
 const app = express();
+import loginRoute from './routes/login/login';
+import signupRoute from './routes/signup/signup';
 
-app.post('/api/auth/login', (_req, res): void => {
-  res.json('I got this')
-});
+app.use('/api/auth/login', loginRoute);
 
-app.post('/api/auth/signup', (_req, res): void => {
-  res.json('I got signed up')
-})
+app.use('/api/auth/signup', signupRoute)
 
 app.listen(port, (): void => {
   console.log('This is your working dir: ', __dirname)
