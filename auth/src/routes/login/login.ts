@@ -4,6 +4,7 @@ import BcryptUtilities from '../../utilities/bcrypt';
 import  connectToDb from '../../utilities/mongo/mongo';
 import DbActions from '../../utilities/mongo/db-actions';
 import { IUser } from '../../models/user';
+import { getToken } from '../../utilities/jwt';
 
 const router = Router();
 
@@ -16,7 +17,7 @@ router.post('/', async (req: Request, res: Response): Promise<Response> => {
     const verified = BcryptUtilities.verifyPassword(req.body.password, user.password);
     if (!verified) return res.sendStatus(401);
 
-    return res.json({ verified });
+    return res.cookie('REFRESH-TOKEN', getToken({ username: user.username })).json({ verified });
 });
 
 export default router;
