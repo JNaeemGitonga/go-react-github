@@ -4,18 +4,16 @@ const connectionString = process.env.MONGODB__URI;
 const dbName = process.env.DB__NAME;
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 
-const _connectToDb = (): Promise<MongoClient> => {
-    return MongoClient.connect(connectionString, options);
-}
+let client: MongoClient;
 
-const initDb = async (): Promise<Db> => {
-    const client = await _connectToDb();
-
+const connectToDb = async (): Promise<Db> => {
     if (client) {
+        console.log('connecting To DB')
         return client.db(dbName);
-    } else {
-        Promise.reject(`couldn't connect to db: ${dbName}`);
     }
+
+    client = await MongoClient.connect(connectionString, options);;
+    return client.db(dbName);
 }
 
-export default initDb;
+export default connectToDb;

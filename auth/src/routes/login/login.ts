@@ -1,13 +1,22 @@
 import { Router } from 'express';
+import { Request, Response } from 'express';
 import BcryptUtilities from '../../utilities/bcrypt';
-import { Request, Response } from '../../utilities/request';
+import  connectToDb from '../../utilities/mongo/mongo';
+import DbActions from '../../utilities/mongo/db-actions';
+import { IUser } from '../../models/user';
 
 const router = Router();
 
-router.post('/', async (req: Request, res: Response): Promise<void> => {
-    const hash = 'string'; //* should fetch from db and get the personby username
-    const verified = await BcryptUtilities.verifyPassword(req.body.password, hash);
-    res.json({ verified });
+router.post('/', async (req: Request, res: Response): Promise<Response> => {
+    const db = await connectToDb();
+    const dbActions = new DbActions<IUser>(db, 'users');
+    const user = await dbActions.findOne({ username: req.body.username });
+    if (!user) return res.sendStatus(404);
+
+    const verified = BcryptUtilities.verifyPassword(req.body.password, user.password);
+    if (!verified) return res.sendStatus(401);
+
+    return res.json({ verified });
 });
 
 export default router;
