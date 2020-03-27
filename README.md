@@ -33,3 +33,5 @@ To start this app locally:
 
 7. While working with TravisCI I noticed I was having trouble with my build.  I had renamed a file a week or so back and was unaware that github had not registered the change. In the github cache the file name remained the same. In order to fix that I needed to run `git rm --cache client/src/components/Login/login.utilities.js`. That command would remove the old filename and I could then use the new one.  After that I no longer received the following error. <br/>
 ![Screen Shot 2020-03-22 at 11 02 45 AM](https://user-images.githubusercontent.com/26694930/77252875-2ba84e80-6c2d-11ea-88e1-d15c616ae363.png)
+
+8. You do not need the context providers and consumers to use the context api as I demonstrated back in Jan 2019. Set the `.contextType` for the component.

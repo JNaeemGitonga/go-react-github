@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Login.module.css';
-import SignupViewContext from '../../context/signup-view-context';
+import LoginSignupContext from '../../context/login-signup-context';
 import * as Mui from '../../shared/material-ui.components';
 import Button from '../../shared/Button';
 import LoginUtilities from './Login.utilities';
@@ -12,7 +12,7 @@ import ln from '../../shared/constants/label-names';
 
 export default class Login extends Component {
     state = {
-        showSignup: this.context,
+        showSignup: this.context.showSignup,
         username: '',
         password: '',
         confirmPassword: '',
@@ -41,7 +41,8 @@ export default class Login extends Component {
             password: this.state.password,
         });
 
-        LoginUtilities.handleLogin(res);
+        LoginUtilities.handleLogin(res, this.state.username);
+
     };
 
     signup = async () => {
@@ -82,6 +83,11 @@ export default class Login extends Component {
         !confirmPasswordInvalid && this.signup();
     };
 
+    toggleShowSignup = () => {
+        this.context.showSignup = !this.context.showSignup;
+        this.setState({ showSignup: !this.context.showSignup })
+    }
+
     componentWillUnmount() {
         document
             .getElementsByTagName('form')[0]
@@ -99,7 +105,7 @@ export default class Login extends Component {
             usernameInvalid,
             passwordInvalid,
             password,
-            confirmPassword
+            confirmPassword,
         } = this.state;
 
         return (
@@ -108,7 +114,7 @@ export default class Login extends Component {
                     <div id={cn.placeHolderId} />{/* Without this place holder MUI will throw an error as this element must contain a child */}
                 </Mui.Container>
                 <form id={styles[cn.loginSignupFormId]}
-                      aria-label={ln.loginForm}>
+                    aria-label={ln.loginForm}>
 
                     <Mui.TextField  id={styles[cn.usernameInputId]}
                             required={true}
@@ -116,11 +122,12 @@ export default class Login extends Component {
                             type={ln.name}
                             label={ln.username}
                             onChange={({ target }) => {
+                                this.context.username = target.value;
                                 this.setState({
                                     [ln.username]: target.value,
                                     [vn.usernameInvalid]: LoginUtilities.isInputInvalid(ln.username, target.value)
                                 });
-               
+            
                             }}
                     />
                     <Mui.TextField  id={styles[cn.passwordInputId]}
@@ -153,7 +160,7 @@ export default class Login extends Component {
                                         [ln.confirmPasswordCC]: target.value,
                                         [vn.confirmPasswordInvalid]: LoginUtilities.confirmPasswordIsInvalid(password, target.value)
                                     });
-                   
+                
                                 }}
                         />
                     )}
@@ -165,27 +172,23 @@ export default class Login extends Component {
                         color={cn.primary}
                         btnText={ln.submit}
                 />
-
-                <SignupViewContext.Provider value={showSignup}>
-                    {showSignup && (
-                        <span className={styles[cn.toggleSpan]}
-                              onClick={() => this.setState({ showSignup: false })}
-                        >
-                            Click here to Login
-                        </span>
-                    )}
-                    {!showSignup && (
-                        <span className={styles[cn.toggleSpan]}
-                              onClick={() => this.setState({ showSignup: true })}
-                        >
-                            Click here to SignUp
-                        </span>
-                    )}
-                </SignupViewContext.Provider>
+                {showSignup && (
+                    <span className={styles[cn.toggleSpan]}
+                            onClick={() => this.toggleShowSignup()}
+                    >
+                        Click here to Login
+                    </span>
+                )}
+                {!showSignup && (
+                    <span className={styles[cn.toggleSpan]}
+                            onClick={() => this.toggleShowSignup()}
+                    >
+                        Click here to SignUp
+                    </span>
+                )}
             </div>
         );
     }
-
 }
 
-Login.contextType = SignupViewContext;
+Login.contextType = LoginSignupContext;

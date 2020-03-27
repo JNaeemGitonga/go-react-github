@@ -1,5 +1,6 @@
 /*eslint no-unused-vars: 0*/ //* we are using this in our jsdoc see below
 import { Response } from 'superagent';
+import history from '../../shared/history';
 
 /** Class with methods for login */
 export default class LoginUtilities {
@@ -45,10 +46,11 @@ export default class LoginUtilities {
     /**
      * handles login response
      * @param {Response} response 
+     * @param {string} username
      */
-    static handleLogin(response) {
-        if (response.statusCode === 200) {
-            //* redirect to inside app
+    static handleLogin(response, username) {
+        if (response.status === 200) {
+            history.push(`/repos/${username}`);
         } else {
             //* call an error function
         }

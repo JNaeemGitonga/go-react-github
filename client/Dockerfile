@@ -3,5 +3,6 @@ RUN mkdir -p /app
 WORKDIR /app/
 COPY . /app
 RUN npm i
-ENTRYPOINT [ "npm" ]
-CMD ["start"]
+
+RUN chmod +x /app/start.sh
+ENTRYPOINT ["/bin/bash", "/app/start.sh"]

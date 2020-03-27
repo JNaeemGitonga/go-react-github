@@ -1,39 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from '../../App.module.css';
 import Nav from '../Nav';
 import Login from '../Login';
 import Repos from '../Repos';
 import Favorites from '../Favorites';
+import { Router, Route } from "react-router-dom";
+import history from '../../shared/history';
 
-export default class Entry extends Component {
-    state = {
-        loggedIn: false,
-        repos: false,
-        favorites: false,
-    };
-
-    setLogInStatus = status => {
-        this.setState({ loggedIn: status });
-    };
-
-    setView = update => {
-        console.log(update);
-        this.setState({ ...update });
-    };
-
-    render() {
-        return (
-            <div className={styles.entry}>
-                <Nav loggedIn={this.state.loggedIn} setView={this.setView} />
-                {!this.state.loggedIn && (
-                    <Login
-                        setLogin={this.setLogInStatusb}
-                        setView={this.setView}
-                    />
-                )}
-                {this.state.repos && <Repos />}
-                {this.state.favorites && <Favorites />}
-            </div>
-        );
-    }
+export const Entry = () => {
+    return (
+        <div className={styles.entry}>
+            <Nav />
+            <Router history={history}>
+                <Route exact path='/' component={Login} />
+                <Route exact path='/repos/:username' component={Repos} />
+                <Route exact path='/favorites' component={Favorites} />
+            </Router>
+        </div>
+    );
 }
+
+export default Entry;
