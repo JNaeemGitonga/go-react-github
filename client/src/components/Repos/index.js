@@ -8,7 +8,6 @@ export default class Repos extends Component {
     };
 
     componentDidMount() {
-        console.log(this.context.showSignup)
         this.getRepos();
     }
 
@@ -16,14 +15,13 @@ export default class Repos extends Component {
         let repos;
         try {
             repos = await request.get(`/api/repos/${this.context.username}`);
+            this.setState({ repos })
         } catch (err) {
             console.log('fail', err);
         }
-        
-        this.setState({ repos });
     };
     render() {
-        return <div id="repos">You see me!</div>
+        return <div id='repos'>You see me!</div>
     }
 }
 
