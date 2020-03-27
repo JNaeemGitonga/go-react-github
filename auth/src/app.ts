@@ -16,7 +16,7 @@ const app = express();
 
 
 (async (): Promise<void> => {
-    const db = await connectToDb()
+    const db = await connectToDb();
     if (!db) process.exit(1);
 })();
 
@@ -31,8 +31,10 @@ app.use('/api/auth/signup', signupRoute);
 app.use('/api/auth/refresh', refreshRoute);
 
 app.listen(port, (): void => {
-    console.log('This is your working dir: ', __dirname);
-    console.log();
-    console.log('Grind hard on server port ' + port);
+    console.log(`
+      This is your working dir: ${__dirname})
+
+      Grind hard on server port ${port}`
+    );
   }
 );

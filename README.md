@@ -1,5 +1,4 @@
-# Go/React/Github
-<img src="https://travis-ci.org/JNaeemGitonga/go-react-github.png?branch=master" />
+# Go/React/Github   <img src="https://travis-ci.org/JNaeemGitonga/go-react-github.png?branch=master" />
 
 ## Description
 This is a small distributed system built for users to access their own github accounts, save repos to a favorites list and update their list as needed.
