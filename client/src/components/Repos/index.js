@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import request from 'superagent';
+import LoginSignupContext from '../../context/login-signup-context';
 
 export default class Repos extends Component {
     state = {
@@ -7,13 +8,14 @@ export default class Repos extends Component {
     };
 
     componentDidMount() {
-        this.getRepos('JNaeemGitonga');
+        console.log(this.context.showSignup)
+        this.getRepos();
     }
 
-    getRepos = async username => {
+    getRepos = async () => {
         let repos;
         try {
-            repos = await request.get(`/api/repos/${username}`);
+            repos = await request.get(`/api/repos/${this.context.username}`);
         } catch (err) {
             console.log('fail', err);
         }
@@ -21,6 +23,8 @@ export default class Repos extends Component {
         this.setState({ repos });
     };
     render() {
-        return <div id="repos">You see me!</div>;
+        return <div id="repos">You see me!</div>
     }
 }
+
+Repos.contextType = LoginSignupContext;
