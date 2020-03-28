@@ -37,7 +37,7 @@ export default class Login extends Component {
 
     login = async () => {
         const res = await ApiCalls.login({
-            username: this.state.username,
+            username: this.state.username.toLowerCase(),
             password: this.state.password,
         });
 

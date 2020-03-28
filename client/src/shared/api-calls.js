@@ -1,5 +1,6 @@
 import request from 'superagent';
 import arn from './constants/api-route-names';
+import { siteUrl } from './constants/strings';
 
 export default class ApiCalls {
 
@@ -11,7 +12,8 @@ export default class ApiCalls {
     static async login (data) {
         let response;
         try {
-            response = await request.post(arn.login).send(data).set('accept', 'json');
+            const origin = process.env.NODE_ENV === 'development' ? window.location.origin : siteUrl;
+            response = await request.post(arn.login).send(data).set('accept', 'application/json').set('origin', origin);
         } catch (e) {
             response = e;
         }
