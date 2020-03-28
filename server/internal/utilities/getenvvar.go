@@ -12,6 +12,7 @@ import (
 func GetEnvVar(varName string) string {
 	err := godotenv.Load()
 	if err != nil {
+		log.Println(err)
 		log.Fatal(str.EnvLoadErr)
 	}
 	return os.Getenv(varName)
