@@ -4,9 +4,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
-import loginRoute from './routes/login/login';
-import signupRoute from './routes/signup/signup';
-import refreshRoute from './routes/refresh/refresh';
+import router from './routes';
 import connectToDb from './utilities/mongo/mongo';
 
 config();
@@ -25,16 +23,13 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
-app.use('/api/auth/login', loginRoute);
-app.use('/api/auth/signup', signupRoute);
-app.use('/api/auth/refresh', refreshRoute);
+app.use(router);
 
 app.listen(port, (): void => {
     console.log(`
-      This is your working dir: ${__dirname})
+        This is your working dir: ${__dirname})
 
-      Grind hard on server port ${port}`
+        Grind hard on server port ${port}`
     );
   }
 );
