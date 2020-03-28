@@ -12,7 +12,7 @@ router.post('/', async (req: Request, res: Response): Promise<Response> => {
     }
 
     res.cookie('REFRESH-TOKEN', createToken({username: 'refresh token is good', expiresIn: '6h'}));
-    res.cookie('AUTH-TOKEN', createToken({username: 'auth is good', expiresIn: '2h'}));
+    res.cookie('XSRF-TOKEN', createToken({username: 'auth is good', expiresIn: '2h'}));
 
     return res.json({ msg: 'cookie is good' });
 });
